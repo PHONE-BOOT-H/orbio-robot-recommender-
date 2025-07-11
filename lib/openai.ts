@@ -58,7 +58,7 @@ matchingCapabilities는 사용자 요구사항과 일치하는 로봇의 능력�
 `;
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: [
         {
           role: "system",
