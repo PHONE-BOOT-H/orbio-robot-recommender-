@@ -49,7 +49,7 @@ npm run dev
 
 - **Frontend**: Next.js 14, React 18, TypeScript
 - **Styling**: Tailwind CSS
-- **AI**: OpenAI GPT-4 API
+- **AI**: OpenAI GPT-4o API
 - **Deployment**: Vercel (권장)
 
 ## 📁 프로젝트 구조
