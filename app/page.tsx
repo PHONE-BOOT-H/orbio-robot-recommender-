@@ -47,18 +47,20 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
-        {/* 헤더 */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            🤖 Orbio 로봇 추천 시스템
-          </h1>
-          <p className="text-xl text-gray-600">
-            작업 조건을 입력하면 AI가 가장 적합한 로봇을 추천해드립니다
-          </p>
+        {/* 상단 Orbio 로고 */}
+        <div className="flex flex-col items-center mb-10 animate-fade-in">
+          <a href="https://www.orbio.ai" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/orbio_logo.png"
+              alt="Orbio 로고"
+              className="w-60 h-auto mb-2 transition-transform duration-300 hover:scale-105 hover:drop-shadow-lg"
+              style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.08))' }}
+            />
+          </a>
         </div>
 
         {/* 입력 폼 */}
-        <div className="max-w-2xl mx-auto mb-8">
+        <div className="max-w-2xl mx-auto mb-8 animate-fade-in">
           <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6">
             <div className="mb-4">
               <label htmlFor="userInput" className="block text-sm font-medium text-gray-700 mb-2">
@@ -69,7 +71,7 @@ export default function Home() {
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
                 placeholder="예: 저온 창고에서 무거운 물품을 운반해야 합니다"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow duration-200 focus:shadow-lg"
                 rows={4}
                 disabled={loading}
               />
@@ -77,16 +79,21 @@ export default function Home() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-95"
             >
-              {loading ? '추천 중...' : '로봇 추천받기'}
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                  추천 중...
+                </span>
+              ) : '로봇 추천받기'}
             </button>
           </form>
         </div>
 
         {/* 오류 메시지 */}
         {error && (
-          <div className="max-w-2xl mx-auto mb-8">
+          <div className="max-w-2xl mx-auto mb-8 animate-fade-in">
             <div className="bg-red-50 border border-red-200 rounded-md p-4">
               <p className="text-red-800">{error}</p>
             </div>
@@ -95,15 +102,15 @@ export default function Home() {
 
         {/* 추천 결과 */}
         {recommendation && (
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                🎯 추천 로봇
+          <div className="max-w-4xl mx-auto animate-fade-in">
+            <div className="bg-white rounded-lg shadow-lg p-6 transition-transform duration-500 hover:scale-[1.01]">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                추천 로봇
+                <span className="inline-block animate-bounce text-3xl">🤖</span>
               </h2>
-              
               <div className="grid md:grid-cols-2 gap-6">
                 {/* 로봇 정보 */}
-                <div className="bg-blue-50 rounded-lg p-6">
+                <div className="bg-blue-50 rounded-lg p-6 animate-fade-in">
                   <h3 className="text-xl font-semibold text-blue-900 mb-4">
                     {recommendation.robot.name}
                   </h3>
@@ -130,11 +137,11 @@ export default function Home() {
                     </div>
                     <div>
                       <span className="font-medium text-gray-700">작업 환경:</span>
-                      <div className="mt-1">
+                      <div className="mt-1 flex flex-wrap gap-1">
                         {recommendation.robot.specifications.environment.map((env, index) => (
                           <span
                             key={index}
-                            className="inline-block bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded mr-2 mb-1"
+                            className="inline-block bg-blue-200 text-blue-800 text-sm px-2 py-1 rounded mr-2 mb-1 transition-transform duration-200 hover:scale-110 hover:bg-blue-300"
                           >
                             {env}
                           </span>
@@ -144,26 +151,19 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* 추천 이유 */}
-                <div className="space-y-6">
+                {/* 추천 이유 및 일치 능력 */}
+                <div className="space-y-6 animate-fade-in">
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      💡 추천 이유
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-gray-700 leading-relaxed text-base">
                       {recommendation.reason}
                     </p>
                   </div>
-
                   <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      ✅ 일치하는 능력
-                    </h4>
                     <div className="flex flex-wrap gap-2">
                       {recommendation.matchingCapabilities.map((capability, index) => (
                         <span
                           key={index}
-                          className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full"
+                          className="bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full transition-transform duration-200 hover:scale-110 hover:bg-green-200"
                         >
                           {capability}
                         </span>
@@ -174,9 +174,9 @@ export default function Home() {
               </div>
 
               {/* 로봇 설명 */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in">
                 <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                  📝 로봇 상세 설명
+                  로봇 상세 설명
                 </h4>
                 <p className="text-gray-700 leading-relaxed">
                   {recommendation.robot.description}
@@ -184,15 +184,15 @@ export default function Home() {
               </div>
 
               {/* 사용 사례 */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-gray-200 animate-fade-in">
                 <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                  🎯 주요 사용 사례
+                  주요 사용 사례
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {recommendation.robot.useCases.map((useCase, index) => (
                     <span
                       key={index}
-                      className="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full"
+                      className="bg-purple-100 text-purple-800 text-sm px-3 py-1 rounded-full transition-transform duration-200 hover:scale-110 hover:bg-purple-200"
                     >
                       {useCase}
                     </span>
@@ -203,6 +203,16 @@ export default function Home() {
           </div>
         )}
       </div>
+      {/* 애니메이션 효과용 스타일 */}
+      <style jsx global>{`
+        .animate-fade-in {
+          animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: none; }
+        }
+      `}</style>
     </div>
   );
 } 
