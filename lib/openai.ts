@@ -8,7 +8,6 @@ const openai = new OpenAI({
 export interface RecommendationResult {
   robot: Robot;
   reason: string;
-  confidence: number;
   matchingCapabilities: string[];
 }
 
@@ -49,11 +48,9 @@ ${robotsData.map(robot => `
 {
   "robotId": "선택된 로봇의 ID",
   "reason": "이 로봇을 추천하는 이유 (한국어로 상세히 설명)",
-  "confidence": 0.95,
   "matchingCapabilities": ["요구사항과 일치하는 능력들"]
 }
 
-confidence는 0.0에서 1.0 사이의 값으로, 얼마나 확신하는지 나타냅니다.
 matchingCapabilities는 사용자 요구사항과 일치하는 로봇의 능력들을 나열합니다.
 `;
 
@@ -95,7 +92,6 @@ matchingCapabilities는 사용자 요구사항과 일치하는 로봇의 능력�
     return {
       robot: selectedRobot,
       reason: result.reason,
-      confidence: result.confidence,
       matchingCapabilities: result.matchingCapabilities || []
     };
 

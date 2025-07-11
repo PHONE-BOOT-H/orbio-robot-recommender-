@@ -157,23 +157,6 @@ export default function Home() {
 
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">
-                      📊 신뢰도
-                    </h4>
-                    <div className="flex items-center">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2 mr-3">
-                        <div
-                          className="bg-green-500 h-2 rounded-full"
-                          style={{ width: `${recommendation.confidence * 100}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-sm font-medium text-gray-700">
-                        {Math.round(recommendation.confidence * 100)}%
-                      </span>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
                       ✅ 일치하는 능력
                     </h4>
                     <div className="flex flex-wrap gap-2">
