@@ -47,16 +47,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-8">
-        {/* 상단 Orbio 로고 */}
+        {/* 상단 Orbio 로고 (링크 없이 단순 이미지) */}
         <div className="flex flex-col items-center mb-10 animate-fade-in">
-          <a href="https://www.orbio.ai" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/orbio_logo.png"
-              alt="Orbio 로고"
-              className="w-60 h-auto mb-2 transition-transform duration-300 hover:scale-105 hover:drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.08))' }}
-            />
-          </a>
+          <img
+            src="/orbio_logo.png"
+            alt="Orbio 로고"
+            className="w-60 h-auto mb-2 transition-transform duration-300 hover:scale-105 hover:drop-shadow-lg"
+            style={{ filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.08))' }}
+          />
         </div>
 
         {/* 입력 폼 */}
